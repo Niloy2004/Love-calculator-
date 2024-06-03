@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="" type="image/x-icon">
+<title>Love Calculator</title>
+<style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #40b0f5;
+      font-family: arial, sans-serif;
+    }
+
+    #calculator {
+      text-align: center;
+      background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, .6);
+       padding:10px;
+        width: 350px;
+    }
+
+    #result {
+      font-size: 24px;
+      font-weight: bold;
+      color: #e92bda;
+    }
+  button{
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 11px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+    font-weight: bold;
+}
+
+button:hover {
+  box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+
+input{
+  border: solid black 2px;
+  border-radius: 100px;
+  
+}
+label{
+  font-weight: bold;
+  
+}
+
+  @media only screen and (max-width: 600px) {
+  body {
+    padding: 20px;
+  }
+
+  #calculator {
+    width: 90%;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+  
+  @media only screen and (min-width: 768px) {
+  body {
+    background-color: #40b0f5;
+  }
+
+  #calculator {
+    width: 400px;
+  }
+
+  input {
+    width: 80%;
+  }
+
+  button {
+    width: 45%;
+  }
+}
+
+
+  
+  </style>
+</head>
+<body>
+  <div id="calculator">
+    <h1>Love Calculator</h1>
+    <label for="yourname">Your name:</label>
+    <input type="text" id="yourname" placeholder="Your Name"><br>
+    <h2 style="font-family:cursive">&#9829; Love &#9829;</h2>
+    <label for="partnerName">Partner's Name:</label>
+    <input type="text" id="partnername" placeholder="Partner's Name"><br><br>
+    <button onclick="calculatelove()">Calculate Love</button> &nbsp; 
+    <button onclick="clearFields()">Clear</button><br><br>
+
+      <br><br>
+      <div id="result"></div>
+    </div>
+      
+  <script>
+    function calculatelove() {
+  var yourName = document.getElementById("yourname").value.trim().toLowerCase();
+  var partnerName = document.getElementById("partnername").value.trim().toLowerCase();
+
+  // Calculate a score based on name length and characters
+  var score = calculateScore(yourName, partnerName);
+
+  // Convert the score to a percentage between 0 and 100
+  var lovePercentage = Math.min(Math.max(score, 0), 100);
+
+  var resultElement = document.getElementById("result");
+  resultElement.innerHTML = yourName + " and " + partnerName + "'s Love Percentage is: " + lovePercentage.toFixed(2) + "%";
+}
+
+      
+      
+function calculateScore(name1, name2) {
+  // Calculate score based on name length and characters
+  var score = 0;
+
+  // Adjust the score based on the length of the names
+  score += Math.min(name1.length, name2.length) * 10;
+
+  // Adjust the score based on the similarity of characters in the names
+  for (var i = 0; i < name1.length; i++) {
+    for (var j = 0; j < name2.length; j++) {
+      if (name1[i] === name2[j]) {
+        score += 5;
+      }
+    }
+  }
+
+  return score;
+}
+      function clearFields() {
+  document.getElementById("yourname").value = " ";
+  document.getElementById("partnername").value = " ";
+  document.getElementById("result").innerHTML = " ";
+}
+
+
+  </script>
+</body>
+</html>
